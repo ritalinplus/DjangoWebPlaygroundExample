@@ -19,7 +19,7 @@ class StaffRequiredMixin(object):
 
 class PagesListView(ListView):
     model = Page
-    # paginate_by = 100
+    paginate_by = 100
 
 
 class PageDetailsView(DetailView):
