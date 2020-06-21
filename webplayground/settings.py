@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'core',
+    'messenger',
+    'profiles',
     'pages.apps.PagesConfig',
 ]
 
@@ -122,11 +124,28 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
 
+
 # Auth redirects
-LOGIN_REDIRECT_URL = 'pages:pages'
+# LOGIN_REDIRECT_URL = 'pages:pages'
 LOGOUT_REDIRECT_URL = 'home'
+
+
+# Emails Backend for develop
+if DEBUG is True:
+    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
+else:
+    # TODO: Create settings for production email backend
+    pass
+
+
+# Media Files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
